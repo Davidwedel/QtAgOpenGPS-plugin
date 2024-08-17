@@ -100,6 +100,37 @@ void CABLine::GetCurrentABLine(Vec3 pivot, Vec3 steer,
                        && (!isAutoSteerBtnOn || steerSwitchHigh)))
         BuildCurrentABLineList(pivot,secondsSinceStart,yt,vehicle);
 
+    //qDebug() << !yt.isYouTurnTriggered << "  " << distanceFromCurrentLinePivot << "  " << vehicle.avgSpeed;
+    //potatofarmer was zero
+    if((!yt.isYouTurnTriggered) && abs(distanceFromCurrentLinePivot) < 0.005 && vehicle.avgSpeed > .3
+        && (!property_setMenu_isSimulatorOn)){
+        WASTimatorCount++;
+    }else{
+        WASTimatorCount = 0;
+    }
+
+    if(WASTimatorCount == 10){ //run every second
+        Wastimator0 = Wastimator1;
+        Wastimator1 = Wastimator2;
+        Wastimator2 = Wastimator3;
+        Wastimator3 = Wastimator4;
+        Wastimator4 = Wastimator5;
+        Wastimator5 = Wastimator6;
+        Wastimator6 = Wastimator7;
+        Wastimator7 = Wastimator8;
+        Wastimator8 = Wastimator9;
+        Wastimator9 = vehicle.guidanceLineSteerAngle;
+
+        WastimatorOut = ((Wastimator0 + Wastimator1 + Wastimator2 + Wastimator3 +
+        Wastimator4 + Wastimator5 + Wastimator6 + Wastimator7 + Wastimator8 +
+                          Wastimator9) / 10);
+        qDebug() << "WASTimatorOut : " << WastimatorOut;
+        int settingWASOffset = (int)property_setAS_wasOffset;
+        qDebug() << "Setting: " << settingWASOffset;
+        WASTimatorCount = 0;
+        property_setAS_wasOffset = WastimatorOut;
+    }
+
     //Check uturn first
     if (yt.isYouTurnTriggered && yt.DistanceFromYouTurnLine(vehicle,pn))//do the pure pursuit from youTurn
     {

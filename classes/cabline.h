@@ -37,6 +37,12 @@ private:
     double shadowOffset = 0;
     double widthMinusOverlap = 0;
 
+
+    //potatofarmer was zero
+    int WASTimatorCount = 0;
+    double Wastimator0, Wastimator1, Wastimator2, Wastimator3, Wastimator4,
+        Wastimator5, Wastimator6, Wastimator7, Wastimator8, Wastimator9, WastimatorOut;
+
 public:
     double abFixHeadingDelta = 0;
     double abHeading = 0.0, abLength;
