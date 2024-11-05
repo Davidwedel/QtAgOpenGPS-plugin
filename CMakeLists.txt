@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Remove _cmake suffix when the .pro is removed.  Added here for clarity
-project(QtAgOpenGPS
+project(qtagopengps
     VERSION 0.0
     HOMEPAGE_URL https://github.com/torriem/QtAgOpenGPS
     LANGUAGES CXX
@@ -15,6 +15,12 @@ project(QtAgOpenGPS
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTORCC ON)
+
+option(ALL_AS_ONE "Compile QtAgIO as a static plugin, so it's all one application")
+
+if(ALL_AS_ONE)
+    add_compile_definitions(ALL_AS_ONE)
+endif()
 
 # Find required libraries
 find_package(Qt6 REQUIRED COMPONENTS Core)
@@ -30,7 +36,7 @@ find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 qt_standard_project_setup()
 
 # Create the executable
-qt_add_executable(QtAgOpenGPS
+qt_add_executable(qtagopengps
     main.cpp
     agopengps.qrc
     aogproperties.cpp
@@ -108,13 +114,13 @@ if(LOCAL_QML)
 	add_compile_definitions(LOCAL_QML)
 endif()
 # Where to look for header files
-target_include_directories(QtAgOpenGPS PRIVATE
+target_include_directories(qtagopengps PRIVATE
     .
     classes
 )
 
 # Libraries to link
-target_link_libraries(QtAgOpenGPS PRIVATE
+target_link_libraries(qtagopengps PRIVATE
     Qt6::Core
     Qt6::Widgets
     Qt6::Gui
@@ -125,12 +131,17 @@ target_link_libraries(QtAgOpenGPS PRIVATE
 	Qt6::Multimedia
 )
 
+        if(ALL_AS_ONE)
+            target_link_libraries(qtagopengps PRIVATE
+                qtagio
+            )
+        endif()
 # Compile defines
-target_compile_definitions(QtAgOpenGPS PRIVATE
+target_compile_definitions(qtagopengps PRIVATE
     QT_DEPRECATED_WARNINGS
 )
 
-set_target_properties(QtAgOpenGPS PROPERTIES
+set_target_properties(qtagopengps PROPERTIES
     WIN32_EXECUTABLE ON
     MACOSX_BUNDLE ON
 )
