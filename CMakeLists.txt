@@ -35,6 +35,8 @@ find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 # Qt magic
 qt_standard_project_setup()
 
+add_subdirectory(QtAgIO)
+
 # Create the executable
 qt_add_executable(qtagopengps
     main.cpp
@@ -104,6 +106,8 @@ qt_add_executable(qtagopengps
     classes/vec3.h classes/vec3.cpp
     classes/vec4.h classes/vec4.cpp
     classes/vecfix2fix.h
+    agiointerface.h
+
 )
 
 
@@ -129,13 +133,13 @@ target_link_libraries(qtagopengps PRIVATE
     Qt6::QuickWidgets
     Qt6::Network
 	Qt6::Multimedia
+                p_agioplugin
 )
 
-        if(ALL_AS_ONE)
-            target_link_libraries(qtagopengps PRIVATE
-                qtagio
-            )
-        endif()
+        #if(ALL_AS_ONE)
+        #    target_link_libraries(qtagopengps PRIVATE
+        #    )
+        #endif()
 # Compile defines
 target_compile_definitions(qtagopengps PRIVATE
     QT_DEPRECATED_WARNINGS
@@ -154,4 +158,3 @@ set_target_properties(qtagopengps PROPERTIES
 #    README.md \
 #    LICENSE
 
-add_subdirectory(QtAgIO)

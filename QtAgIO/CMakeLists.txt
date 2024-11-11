@@ -1,7 +1,7 @@
 if(!ALL_AS_ONE)
 cmake_minimum_required(VERSION 3.22)
 
-project(qtagio
+project(agio
         VERSION 0.0
         HOMEPAGE_URL https://github.com/torriem/QtAgOpenGPS
         LANGUAGES CXX
@@ -14,7 +14,7 @@ qt_standard_project_setup()
 
 
 # Create the AgIO executable
-qt_add_executable(qtagio
+qt_add_executable(agio
 
     main.cpp
 	agio.qrc
@@ -41,14 +41,14 @@ qt_add_executable(qtagio
 	inc/CScanReply.h src/CScanReply.cpp
     interfaceproperty.h
 )
-target_include_directories(QtAgIO
+target_include_directories(AgIO
     PRIVATE src
     PUBLIC inc
     PRIVATE .
 )
 
 # Libraries to link
-target_link_libraries(QtAgIO PRIVATE
+target_link_libraries(AgIO PRIVATE
     Qt6::Core
     Qt6::Network
     Qt6::Gui
@@ -58,7 +58,7 @@ target_link_libraries(QtAgIO PRIVATE
 	Qt6::Multimedia
 )
 
-target_compile_options(QtAgIO PRIVATE 
+target_compile_options(AgIO PRIVATE
     -Wall 
     -Werror
 )
@@ -66,10 +66,10 @@ target_compile_options(QtAgIO PRIVATE
 else()
 
 # Create the AgIO executable
-qt_add_plugin(qtagio
+qt_add_plugin(p_agioplugin
     STATIC
-    CLASS_NAME QtAgIO
-
+    CLASS_NAME AgIOPlugin
+        agioplugin.h
         agio.qrc
     agioproperties.cpp
     agioproperty.h agioproperty.cpp
@@ -94,15 +94,16 @@ qt_add_plugin(qtagio
         inc/CScanReply.h src/CScanReply.cpp
     interfaceproperty.h
 )
-target_include_directories(qtagio
+
+target_include_directories(p_agioplugin
     PRIVATE src
     PUBLIC inc
     PRIVATE .
-    ..
+    ../
 )
 
 # Libraries to link
-target_link_libraries(qtagio PRIVATE
+target_link_libraries(p_agioplugin PRIVATE
     Qt6::Core
     Qt6::Network
     Qt6::Gui

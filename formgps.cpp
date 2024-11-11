@@ -14,6 +14,10 @@
 #include <QQuickWindow>
 #include "qmlsettings.h"
 
+#ifdef ALL_AS_ONE
+#include <QPluginLoader>
+#endif
+
 extern QLabel *grnPixelsWindow;
 extern QMLSettings qml_settings;
 
@@ -156,6 +160,12 @@ FormGPS::FormGPS(QWidget *parent) : QQmlApplicationEngine(parent)
         qDebug() << "Stopping simulator because it's off in settings.";
         timerSim.stop();
     }
+
+#ifdef ALL_AS_ONE
+    if(!loadPlugin()) {
+        qDebug() << "Plugin Loading failed!";
+    }
+#endif
 }
 
 FormGPS::~FormGPS()
@@ -1432,3 +1442,52 @@ void FormGPS::fileSaveEverythingBeforeClosingField()
 
 }
 
+#ifdef ALL_AS_ONE
+
+void FormGPS::sendEcho()
+{
+    QString text = echoInterface->echo(lineEdit->text());
+}
+
+bool FormGPS::loadPlugin()
+{
+    /*QDir pluginsDir(QCoreApplication::applicationDirPath());
+#if defined(Q_OS_WIN)
+    if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
+        pluginsDir.cdUp();
+#elif defined(Q_OS_MAC)
+    if (pluginsDir.dirName() == "MacOS") {
+        pluginsDir.cdUp();
+        pluginsDir.cdUp();
+        pluginsDir.cdUp();
+    }
+#endif
+    pluginsDir.cd("plugins");
+    const QStringList entries = pluginsDir.entryList(QDir::Files);
+    for (const QString &fileName : entries) {
+        QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
+        QObject *plugin = pluginLoader.instance();
+        if (plugin) {
+            echoInterface = qobject_cast<EchoInterface *>(plugin);
+            if (echoInterface)
+                return true;
+            pluginLoader.unload();
+        }
+    }
+*/
+    qDebug() << "Loading Plugins";
+
+    const auto staticInstances = QPluginLoader::staticInstances();
+
+    for (QObject *plugin : staticInstances) {
+        QString pluginName = plugin->metaObject()->className();
+        qDebug() << tr("%1 (Static Plugin)").arg(pluginName);
+        if(plugin){
+            agioInterface = qobject_cast<AgIOInterface *>(plugin);
+        }
+    }
+
+    return true;
+}
+
+#endif
