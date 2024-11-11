@@ -1,5 +1,3 @@
-#ifdef ALL_AS_ONE
-
 #ifndef AGIOINTERFACE_H
 #define AGIOINTERFACE_H
 
@@ -21,5 +19,3 @@ public:
 
 
 #endif // AGIOINTERFACE_H
-
-#endif

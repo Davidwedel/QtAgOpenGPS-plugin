@@ -16,12 +16,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTORCC ON)
 
-option(ALL_AS_ONE "Compile QtAgIO as a static plugin, so it's all one application")
-
-if(ALL_AS_ONE)
-    add_compile_definitions(ALL_AS_ONE)
-endif()
-
 # Find required libraries
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
@@ -35,7 +29,7 @@ find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 # Qt magic
 qt_standard_project_setup()
 
-add_subdirectory(QtAgIO)
+add_subdirectory(plugin)
 
 # Create the executable
 qt_add_executable(qtagopengps
@@ -136,10 +130,6 @@ target_link_libraries(qtagopengps PRIVATE
                 p_agioplugin
 )
 
-        #if(ALL_AS_ONE)
-        #    target_link_libraries(qtagopengps PRIVATE
-        #    )
-        #endif()
 # Compile defines
 target_compile_definitions(qtagopengps PRIVATE
     QT_DEPRECATED_WARNINGS

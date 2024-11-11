@@ -5,14 +5,9 @@
 #include "aogrenderer.h"
 #include "aogproperty.h"
 
-#ifdef ALL_AS_ONE
-
 #include <QtPlugin>
 
-Q_IMPORT_PLUGIN(QtAgIO)
-
-#endif
-
+Q_IMPORT_PLUGIN(AgIO)
 
 QLabel *grnPixelsWindow;
 AOGSettings *settings;

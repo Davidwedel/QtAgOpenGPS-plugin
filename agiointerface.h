@@ -1,4 +1,3 @@
-#ifdef ALL_AS_ONE
 #ifndef AGIOINTERFACE_H
 #define AGIOINTERFACE_H
 
@@ -25,5 +24,4 @@ QT_END_NAMESPACE
 //! [0]
 
 
-#endif
 #endif // AGIOINTERFACE_H

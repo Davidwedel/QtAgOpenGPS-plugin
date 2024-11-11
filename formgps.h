@@ -47,9 +47,7 @@
 #include "formheadland.h"
 #include "formheadache.h"
 
-#ifdef ALL_AS_ONE
 #include "agiointerface.h"
-#endif
 
 //forward declare classes referred to below, to break circular
 //references in the code
@@ -795,7 +793,6 @@ public slots:
     void onSectionMasterManualOff();
     void onStoppedDriving();
 
-#ifdef ALL_AS_ONE
 private slots: void sendEcho();
 
 private:

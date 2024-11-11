@@ -13,10 +13,7 @@
 #include <QLabel>
 #include <QQuickWindow>
 #include "qmlsettings.h"
-
-#ifdef ALL_AS_ONE
 #include <QPluginLoader>
-#endif
 
 extern QLabel *grnPixelsWindow;
 extern QMLSettings qml_settings;
@@ -161,11 +158,9 @@ FormGPS::FormGPS(QWidget *parent) : QQmlApplicationEngine(parent)
         timerSim.stop();
     }
 
-#ifdef ALL_AS_ONE
     if(!loadPlugin()) {
         qDebug() << "Plugin Loading failed!";
     }
-#endif
 }
 
 FormGPS::~FormGPS()
@@ -1442,7 +1437,6 @@ void FormGPS::fileSaveEverythingBeforeClosingField()
 
 }
 
-#ifdef ALL_AS_ONE
 
 void FormGPS::sendEcho()
 {
@@ -1490,4 +1484,3 @@ bool FormGPS::loadPlugin()
     return true;
 }
 
-#endif
