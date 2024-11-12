@@ -2,7 +2,7 @@
 qt_add_plugin(p_agioplugin
     STATIC
     CLASS_NAME AgIOPlugin
-        agioplugin.cpp agioplugin.h
+
         agio.qrc
     agioproperties.cpp
     agioproperty.h agioproperty.cpp
