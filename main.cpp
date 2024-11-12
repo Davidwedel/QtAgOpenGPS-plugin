@@ -5,9 +5,11 @@
 #include "aogrenderer.h"
 #include "aogproperty.h"
 
+#include "echowindow.h"
+
 #include <QtPlugin>
 
-Q_IMPORT_PLUGIN(AgIO)
+Q_IMPORT_PLUGIN(EchoPlugin)
 
 QLabel *grnPixelsWindow;
 AOGSettings *settings;
@@ -41,6 +43,10 @@ int main(int argc, char *argv[])
     AOGProperty::init_defaults();
     settings->sync();
     FormGPS w;
+
+    EchoWindow window;
+    window.show();
+
     //w.show();
 
     if (property_displayShowBack) {

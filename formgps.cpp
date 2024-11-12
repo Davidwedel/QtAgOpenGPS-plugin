@@ -158,9 +158,6 @@ FormGPS::FormGPS(QWidget *parent) : QQmlApplicationEngine(parent)
         timerSim.stop();
     }
 
-    if(!loadPlugin()) {
-        qDebug() << "Plugin Loading failed!";
-    }
 }
 
 FormGPS::~FormGPS()
@@ -1435,52 +1432,5 @@ void FormGPS::fileSaveEverythingBeforeClosingField()
     JobClose();
     //Text = "AgOpenGPS";
 
-}
-
-
-void FormGPS::sendEcho()
-{
-    QString text = echoInterface->echo(lineEdit->text());
-}
-
-bool FormGPS::loadPlugin()
-{
-    /*QDir pluginsDir(QCoreApplication::applicationDirPath());
-#if defined(Q_OS_WIN)
-    if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
-        pluginsDir.cdUp();
-#elif defined(Q_OS_MAC)
-    if (pluginsDir.dirName() == "MacOS") {
-        pluginsDir.cdUp();
-        pluginsDir.cdUp();
-        pluginsDir.cdUp();
-    }
-#endif
-    pluginsDir.cd("plugins");
-    const QStringList entries = pluginsDir.entryList(QDir::Files);
-    for (const QString &fileName : entries) {
-        QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
-        QObject *plugin = pluginLoader.instance();
-        if (plugin) {
-            echoInterface = qobject_cast<EchoInterface *>(plugin);
-            if (echoInterface)
-                return true;
-            pluginLoader.unload();
-        }
-    }
-*/
-    qDebug() << "Loading Plugins";
-
-    const auto staticInstances = QPluginLoader::staticInstances();
-
-    for (QObject *plugin : staticInstances) {
-        QString pluginName = plugin->metaObject()->className();
-        qDebug() << tr("%1 (Static Plugin)").arg(pluginName);
-        if(plugin){
-            agioInterface = qobject_cast<AgIOInterface *>(plugin);
-        }
-    }
-
-    return true;
 }
 

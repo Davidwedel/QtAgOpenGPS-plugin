@@ -100,6 +100,7 @@ qt_add_executable(qtagopengps
     classes/vec3.h classes/vec3.cpp
     classes/vec4.h classes/vec4.cpp
     classes/vecfix2fix.h
+    agiointerface.h echowindow.cpp echowindow.h
 
 
 )
@@ -127,7 +128,7 @@ target_link_libraries(qtagopengps PRIVATE
     Qt6::QuickWidgets
     Qt6::Network
 	Qt6::Multimedia
-                p_agioplugin
+                p_echoplugin
 )
 
 # Compile defines
