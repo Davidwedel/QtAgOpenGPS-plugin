@@ -31,7 +31,7 @@ private:
     void createGUI();
     bool loadPlugin();
 
-    EchoInterface *echoInterface;
+    AgIOInterface *agioInterface;
     QLineEdit *lineEdit;
     QLabel *label;
     QPushButton *button;

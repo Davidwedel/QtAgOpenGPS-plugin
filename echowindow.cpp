@@ -30,7 +30,7 @@ EchoWindow::EchoWindow()
 //! [1]
 void EchoWindow::sendEcho()
 {
-    QString text = echoInterface->echo(lineEdit->text());
+    QString text = agioInterface->echo(lineEdit->text());
     label->setText(text);
 }
 //! [1]
@@ -78,8 +78,8 @@ bool EchoWindow::loadPlugin()
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
-            echoInterface = qobject_cast<EchoInterface *>(plugin);
-            if (echoInterface)
+            AgIOInterface = qobject_cast<AgIOInterface *>(plugin);
+            if (AgIOInterface)
                 return true;
             pluginLoader.unload();
         }
@@ -93,7 +93,7 @@ bool EchoWindow::loadPlugin()
         QString pluginName = plugin->metaObject()->className();
         qDebug() << tr("%1 (Static Plugin)").arg(pluginName);
         if(plugin){
-            echoInterface = qobject_cast<EchoInterface *>(plugin);
+            agioInterface = qobject_cast<AgIOInterface *>(plugin);
         }
     }
 

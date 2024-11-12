@@ -9,7 +9,7 @@
 
 #include <QtPlugin>
 
-Q_IMPORT_PLUGIN(EchoPlugin)
+Q_IMPORT_PLUGIN(AgIOPlugin)
 
 QLabel *grnPixelsWindow;
 AOGSettings *settings;

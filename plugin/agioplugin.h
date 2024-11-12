@@ -9,11 +9,11 @@
 #include "agiointerface.h"
 
 //! [0]
-class EchoPlugin : public QObject, EchoInterface
+class AgIOPlugin : public QObject, AgIOInterface
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.EchoInterface" FILE "echoplugin.json")
-    Q_INTERFACES(EchoInterface)
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.Examples.AgIOInterface" FILE "echoplugin.json")
+    Q_INTERFACES(AgIOInterface)
 
 public:
     QString echo(const QString &message) override;

@@ -128,7 +128,7 @@ target_link_libraries(qtagopengps PRIVATE
     Qt6::QuickWidgets
     Qt6::Network
 	Qt6::Multimedia
-                p_echoplugin
+                p_AgIOPlugin
 )
 
 # Compile defines

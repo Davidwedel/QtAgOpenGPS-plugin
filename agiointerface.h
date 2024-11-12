@@ -8,19 +8,19 @@
 #include <QString>
 
 //! [0]
-class EchoInterface
+class AgIOInterface
 {
 public:
-    virtual ~EchoInterface() = default;
+    virtual ~AgIOInterface() = default;
     virtual QString echo(const QString &message) = 0;
 };
 
 
 QT_BEGIN_NAMESPACE
 
-#define EchoInterface_iid "org.qt-project.Qt.Examples.EchoInterface"
+#define AgIOInterface_iid "org.qt-project.Qt.Examples.AgIOInterface"
 
-Q_DECLARE_INTERFACE(EchoInterface, EchoInterface_iid)
+Q_DECLARE_INTERFACE(AgIOInterface, AgIOInterface_iid)
 QT_END_NAMESPACE
 
 //! [0]

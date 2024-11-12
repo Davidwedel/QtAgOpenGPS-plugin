@@ -2,7 +2,7 @@
 #include "agioplugin.h"
 
 //! [0]
-QString EchoPlugin::echo(const QString &message)
+QString AgIOPlugin::echo(const QString &message)
 {
     return message;
 }
