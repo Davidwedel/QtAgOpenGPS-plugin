@@ -1,7 +1,8 @@
 # Create the AgIO executable
-qt_add_plugin(p_agioplugin
+qt_add_plugin(p_AgIOPlugin
     STATIC
     CLASS_NAME AgIOPlugin
+	agioplugin.cpp agioplugin.h
 
         agio.qrc
     agioproperties.cpp
@@ -29,7 +30,7 @@ qt_add_plugin(p_agioplugin
 )
 
 
-target_include_directories(p_agioplugin
+target_include_directories(p_AgIOPlugin
     PRIVATE src
     PUBLIC inc
     PRIVATE .
@@ -37,7 +38,7 @@ target_include_directories(p_agioplugin
 )
 
 # Libraries to link
-target_link_libraries(p_agioplugin PRIVATE
+target_link_libraries(p_AgIOPlugin PRIVATE
     Qt6::Core
     Qt6::Network
     Qt6::Gui

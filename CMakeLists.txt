@@ -29,7 +29,7 @@ find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 # Qt magic
 qt_standard_project_setup()
 
-add_subdirectory(plugin)
+add_subdirectory(QtAgIO)
 
 # Create the executable
 qt_add_executable(qtagopengps
