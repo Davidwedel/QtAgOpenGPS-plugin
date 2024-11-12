@@ -3,9 +3,9 @@
 #include "qmlutil.h"
 #include <QQuickWindow>
 #include <QQmlApplicationEngine>
-#include "qmlsettings.h"
+#include "agioqmlsettings.h"
 
-extern QMLSettings qml_settings;
+extern AgIOQMLSettings qml_settings;
 
 FormLoop::FormLoop(QObject *parent) : QObject(parent),
     qml_root(parent),

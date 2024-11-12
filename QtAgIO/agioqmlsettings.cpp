@@ -1,4 +1,4 @@
-#include "qmlsettings.h"
+#include "agioqmlsettings.h"
 #include <QDateTime>
 #include <QSettings>
 #include "agioproperty.h"
@@ -11,14 +11,14 @@
  * about how this all works to fix it :).
  */
 
-QMLSettings qml_settings;
+AgIOQMLSettings qml_settings;
 
-QMLSettings::QMLSettings(QObject *parent) :  QQmlPropertyMap(parent) {
+AgIOQMLSettings::AgIOQMLSettings(QObject *parent) :  QQmlPropertyMap(parent) {
     //connect to our own signal so we can map to QSetting and then perform the change
-    connect (this, &QQmlPropertyMap::valueChanged, this, &QMLSettings::onValueChanged);
+    connect (this, &QQmlPropertyMap::valueChanged, this, &AgIOQMLSettings::onValueChanged);
 }
 
-void QMLSettings::addKey(QString qml_key, QString settings_key, QString type_name) {
+void AgIOQMLSettings::addKey(QString qml_key, QString settings_key, QString type_name) {
     //map property names to QSettings paths. property names are what are
     //exposed to QML, settings paths are where the property lives in the
     //ini file.
@@ -27,7 +27,7 @@ void QMLSettings::addKey(QString qml_key, QString settings_key, QString type_nam
     settings_type_map[settings_key] = type_name;
 }
 
-void QMLSettings::loadSettings() {
+void AgIOQMLSettings::loadSettings() {
     //load every setting that is in our map
     QString settings_key;
     QVariant settings_value;
@@ -66,7 +66,7 @@ void QMLSettings::loadSettings() {
     }
 }
 
-void QMLSettings::updateSetting(const QString &settings_key) {
+void AgIOQMLSettings::updateSetting(const QString &settings_key) {
     //a QSetting key/value pair was updated, so update QML's view
     QString qml_key = settings_to_qml_map[settings_key];
     QVariant settings_value = settings->value(settings_key,unset);
@@ -101,7 +101,7 @@ void QMLSettings::updateSetting(const QString &settings_key) {
     insert(qml_key, settings_value);
 }
 
-void QMLSettings::onValueChanged(const QString &key, const QVariant &value) {
+void AgIOQMLSettings::onValueChanged(const QString &key, const QVariant &value) {
     //Anytime QML changes a property, be sure to update it back to
     //the QSettings store.  We use AOGSetting's setValue_noqml to
     //prevent AgIOSetting from calling our updateSetting which would loop!

@@ -1,6 +1,6 @@
-#include "qmlsettings.h"
+#include "agioqmlsettings.h"
 
-void QMLSettings::setupKeys() {
+void AgIOQMLSettings::setupKeys() {
     addKey(QString("setUDP_listenPort"), QString("comm/udpListenPort"), "int");
     addKey(QString("setUDP_sendPort"), QString("comm/udpSendPort"), "int");
 	addKey(QString("setUDP_numConnections"), QString("comm/udpNumConnections"), "int");

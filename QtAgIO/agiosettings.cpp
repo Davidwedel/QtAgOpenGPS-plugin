@@ -9,9 +9,9 @@
 #include <QJsonDocument>
 #include <QDataStream>
 #include <QFile>
-#include "qmlsettings.h"
+#include "agioqmlsettings.h"
 
-extern QMLSettings qml_settings;
+extern AgIOQMLSettings qml_settings;
 
 QVariant unset("UNSET"); //sentinal used to identify missing values in settings
 

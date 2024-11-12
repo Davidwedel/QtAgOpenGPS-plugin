@@ -7,11 +7,11 @@
 #include "qmlutil.h"
 #include "formloop.h"
 #include "interfaceproperty.h"
-#include "qmlsettings.h"
+#include "agioqmlsettings.h"
 #include <QHostInfo>
 #include "agioproperty.h"
 
-extern QMLSettings qml_settings;
+extern AgIOQMLSettings qml_settings;
 
 void FormLoop::setupGUI()
 {

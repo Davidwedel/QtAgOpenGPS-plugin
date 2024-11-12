@@ -1,6 +1,6 @@
 
 #include "agioplugin.h"
-#include "agiosettings.h"
+#include "agioproperty.h"
 
 AgIOSettings *settings;
 

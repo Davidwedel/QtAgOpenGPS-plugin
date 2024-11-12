@@ -9,7 +9,7 @@
 #include <QQmlPropertyMap>
 
 
-class QMLSettings : public QQmlPropertyMap
+class AgIOQMLSettings : public QQmlPropertyMap
 {
     Q_OBJECT
 public:
@@ -17,7 +17,7 @@ public:
     QMap<QString, QString> settings_to_qml_map; //map of qml property keys to settings path keys
     QMap<QString, QString> settings_type_map; //map of qml property keys to settings path keys
 
-    QMLSettings(QObject *parent = 0);
+    AgIOQMLSettings(QObject *parent = 0);
 
     void addKey(QString qml_key, QString settings_key, QString type_name);
     void setupKeys();

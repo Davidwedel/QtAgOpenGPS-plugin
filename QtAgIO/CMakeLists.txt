@@ -15,8 +15,8 @@ qt_add_plugin(p_AgIOPlugin
     formloop_ui.cpp
         formloop_settings.cpp
     properties.h
-    qmlsettings.h qmlsettings.cpp
-    qmlsettings_addkeys.cpp
+    agioqmlsettings.h agioqmlsettings.cpp
+    agioqmlsettings_addkeys.cpp
     qmlutil.h
 
     formloop_formudp.cpp
