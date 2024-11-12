@@ -100,7 +100,7 @@ qt_add_executable(qtagopengps
     classes/vec3.h classes/vec3.cpp
     classes/vec4.h classes/vec4.cpp
     classes/vecfix2fix.h
-    agiointerface.h
+
 
 )
 
